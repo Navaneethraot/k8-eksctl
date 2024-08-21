@@ -18,3 +18,8 @@ kubectl version --client
 -------
 aws configure ** or use IAM
 eksctl create cluster --config-file=eks.yaml
+
+** Install kubens**
+sudo git clone https://github.com/ahmetb/kubectx /opt/kubectx
+sudo ln -s /opt/kubectx/kubens /usr/local/bin/kubens
+

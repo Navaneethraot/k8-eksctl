@@ -37,8 +37,10 @@ usermod -aG docker ec2-user
 VALIDATE $? "Docker installation"
 
 # eksctl
+echo "Installing eksctl..."
 curl --silent --location "https://github.com/weaveworks/eksctl/releases/latest/download/eksctl_$(uname -s)_amd64.tar.gz" | tar xz -C /tmp
 mv /tmp/eksctl /usr/local/bin
+echo "Verifying eksctl installation..."
 eksctl version
 #VALIDATE $? "eksctl installation"
 
@@ -62,6 +64,9 @@ mv kubectl /usr/local/bin/kubectl
 #VALIDATE $? "helm installation"
 
 ## Create EKS Cluster
+echo "Cloning the repository..."
 git clone https://github.com/Navaneethraot/k8-eksctl.git
-cd k8-eksctl
+# Change to the cloned directory
+cd k8-eksctl || { echo "Failed to change directory"; exit 1; }
+echo "Creating EKS cluster..."
 eksctl create cluster --config-file=eks.yaml

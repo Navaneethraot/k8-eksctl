@@ -60,3 +60,8 @@ curl -fsSL -o get_helm.sh https://raw.githubusercontent.com/helm/helm/main/scrip
 chmod 700 get_helm.sh
 ./get_helm.sh
 VALIDATE $? "helm installation"
+
+## Create EKS Cluster
+git clone https://github.com/Navaneethraot/k8-eksctl.git
+cd k8-eksctl
+eksctl create cluster --config-file=eks.yaml

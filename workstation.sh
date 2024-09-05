@@ -77,7 +77,7 @@ curl --silent --location "https://github.com/weaveworks/eksctl/releases/latest/d
 
 # eksctl version
 
-
+**********
 # #kubectl
 
 # curl -O https://s3.us-west-2.amazonaws.com/amazon-eks/1.30.2/2024-07-12/bin/linux/amd64/kubectl

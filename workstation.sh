@@ -42,14 +42,17 @@ curl --silent --location "https://github.com/weaveworks/eksctl/releases/latest/d
 mv /tmp/eksctl /usr/local/bin
 echo "Verifying eksctl installation..."
 eksctl version
-#VALIDATE $? "eksctl installation"
+VALIDATE $? "eksctl installation"
 
 
 # kubectl
 curl -O https://s3.us-west-2.amazonaws.com/amazon-eks/1.30.0/2024-05-12/bin/linux/amd64/kubectl
 chmod +x ./kubectl
 mv kubectl /usr/local/bin/kubectl
-#VALIDATE $? "kubectl installation"
+VALIDATE $? "kubectl installation"
+
+echo "Creating EKS cluster..."
+eksctl create cluster --config-file=eks.yaml
 
 # kubens
 # git clone https://github.com/ahmetb/kubectx /opt/kubectx
@@ -64,14 +67,13 @@ mv kubectl /usr/local/bin/kubectl
 #VALIDATE $? "helm installation"
 
 ## Create EKS Cluster
-echo "Cloning the repository..."
-git clone https://github.com/Navaneethraot/k8-eksctl.git
+#echo "Cloning the repository..."
+#git clone https://github.com/Navaneethraot/k8-eksctl.git
 # Change to the cloned directory
-cd k8-eksctl || { echo "Failed to change directory"; exit 1; }
-echo "Creating EKS cluster..."
-eksctl create cluster --config-file=eks.yaml
+#cd k8-eksctl || { echo "Failed to change directory"; exit 1; }
 
-curl --silent --location "https://github.com/weaveworks/eksctl/releases/latest/download/eksctl_$(uname -s)_amd64.tar.gz" | tar xz -C /tmp
+
+#curl --silent --location "https://github.com/weaveworks/eksctl/releases/latest/download/eksctl_$(uname -s)_amd64.tar.gz" | tar xz -C /tmp
 
 # sudo mv /tmp/eksctl /usr/local/bin
 

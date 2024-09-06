@@ -38,7 +38,7 @@ VALIDATE $? "Docker installation"
 
 systemctl start docker &>> $LOGFILE
 systemctl enable docker &>> $LOGFILE
-#VALIDATE $? "Docker service configuration"
+VALIDATE $? "Docker service configuration"
 
 usermod -aG docker ec2-user &>> $LOGFILE
 VALIDATE $? "User added to Docker group"
@@ -51,17 +51,14 @@ VALIDATE $? "eksctl installation"
 
 echo "Verifying eksctl installation..."
 eksctl version &>> $LOGFILE
-#VALIDATE $? "eksctl verification"
+VALIDATE $? "eksctl verification"
 
 # kubectl installation
 echo "Installing kubectl..."
 curl -O https://s3.us-west-2.amazonaws.com/amazon-eks/1.30.0/2024-05-12/bin/linux/amd64/kubectl &>> $LOGFILE
 chmod +x ./kubectl &>> $LOGFILE
 mv kubectl /usr/local/bin/kubectl &>> $LOGFILE
-#VALIDATE $? "kubectl installation"
-
-echo "Creating eks cluster"
-eksctl create cluster --config-file=eks.yaml
+VALIDATE $? "kubectl installation"
 
 # kubens installation
 echo "Installing kubens..."

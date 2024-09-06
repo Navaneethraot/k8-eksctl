@@ -60,6 +60,9 @@ chmod +x ./kubectl &>> $LOGFILE
 mv kubectl /usr/local/bin/kubectl &>> $LOGFILE
 #VALIDATE $? "kubectl installation"
 
+echo "Creating eks cluster"
+eksctl create cluster --config-file=eks.yaml
+
 # kubens installation
 echo "Installing kubens..."
 git clone https://github.com/ahmetb/kubectx /opt/kubectx &>> $LOGFILE
